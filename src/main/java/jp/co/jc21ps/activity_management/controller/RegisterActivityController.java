@@ -92,7 +92,7 @@ public class RegisterActivityController {
             paramForm.setClubName(registerActivityDto.getClubName());
             
             mav.addObject("registerActivitySaveForm", paramForm);
-            mav.addObject("leaderClubId", leaderClubId);
+//             mav.addObject("leaderClubId", leaderClubId);
             mav.setViewName("registerActivity");
             return mav;
         }
@@ -127,6 +127,7 @@ public class RegisterActivityController {
                     Locale.getDefault());
 
             // 活動登録に成功した場合、トップ画面に遷移
+
             if ("activityRegisterCompleteMessage".equals(resultMessageKey)) {
                 redirectAttributes.addFlashAttribute("activityRegisterCompleteMessage", resultMessage);
                 mav.setViewName("redirect:/top");

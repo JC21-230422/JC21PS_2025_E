@@ -50,27 +50,27 @@ public class ParticipantListController {
         SessionDto sessionDto = commonService.getSessionDto(session);
         String userId = sessionDto.getUserId();
         String clubId = sessionDto.getClubId();
- 
+
         // セッションが切れた場合、エラー画面に遷移
         if (userId == null || userId.isEmpty()) {
             mav.setViewName("error");
             return mav;
         }
- 
+
         /*
          * ➋TODO dtoに値をセット
          */
         ParticipantListDto paramDto = new ParticipantListDto();
         paramDto.setActivityId(activityId);
         paramDto.setUserId(userId);
- 
+
         try {
             /*
              * ➌TODO participantListServiceのgetParticipantListDataメソッドを呼び出す。
              */
             ParticipantDto participantDto = participantListService.getParticipantListData(paramDto);
- 
- 
+
+
             // 返却用のリスト
             List<ParticipantListForm> responseListForm = new ArrayList<>();
  
@@ -87,18 +87,18 @@ public class ParticipantListController {
                     responseListForm.add(form);
                 }
             }
- 
+
             /*
              * ➎ TODO 取得したデータを画面側に渡す。
              */
             mav.addObject("participantList", responseListForm);
             mav.addObject("activityName", participantDto.getActivityName());
- 
+
             // messages.propertiesからメッセージを取得
             String resultMessage = messageSource.getMessage("notpariticipant", null, Locale.getDefault());
             mav.addObject("message", resultMessage);
             mav.addObject("clubId", clubId);
- 
+
             // 遷移先の設定
             mav.setViewName("participantList");
         } catch (Exception e) {

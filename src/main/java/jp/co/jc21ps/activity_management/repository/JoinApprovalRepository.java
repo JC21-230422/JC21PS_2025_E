@@ -115,6 +115,7 @@ public class JoinApprovalRepository {
                 DELETE FROM trn_join_request
                 WHERE club_id = ?
                 AND user_id = ?
+                AND leader_flg = ?
                 """;
 
         // entityから値をゲット

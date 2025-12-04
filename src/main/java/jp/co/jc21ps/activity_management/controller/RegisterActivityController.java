@@ -78,9 +78,8 @@ public class RegisterActivityController {
 
         ModelAndView mav = new ModelAndView();
 
-        // セッションからuserId, clubIdを取得
+        // セッションからclubIdを取得
         SessionDto sessionDto = commonService.getSessionDto(session);
-        String userId = sessionDto.getUserId();
         String leaderClubId = sessionDto.getClubId();
 
         // バリデーションエラー
